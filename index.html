@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <title>Novex Store | تسوّق بذكاء</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./"><span class="brand-mark">N</span><span>NOVEX <b>STORE</b></span></a>
+    <nav><a href="#products">المنتجات</a><a href="#about">عن المتجر</a></nav>
+    <a class="owner-link" href="admin.html">دخول المالك</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">NOVEX STORE</span>
+        <h1>اختياراتك اليومية،<br><em>في مكان واحد.</em></h1>
+        <p>اكتشف المنتجات المتاحة وتواصل معنا مباشرة للطلب.</p>
+        <a class="primary-btn" href="#products">تصفّح المنتجات <span>←</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orb orb-one"></div><div class="orb orb-two"></div>
+        <div class="hero-card"><span>NVX / 01</span><div class="hero-symbol">N<span>.</span></div><small>YOUR NEXT PICK</small></div>
+      </div>
+    </section>
+
+    <section class="product-section" id="products">
+      <div class="section-head">
+        <div><span class="eyebrow">CATALOG</span><h2>المنتجات</h2><p>المنتجات المنشورة من إدارة المتجر فقط.</p></div>
+        <label class="search-box"><span>⌕</span><input id="search" type="search" placeholder="ابحث عن منتج..." aria-label="ابحث عن منتج"></label>
+      </div>
+      <div id="status" class="status">جارٍ تحميل المنتجات…</div>
+      <div id="products-grid" class="products-grid"></div>
+    </section>
+
+    <section class="contact-strip" id="about">
+      <div><span class="eyebrow">NEED HELP?</span><h2>وجدت ما تبحث عنه؟</h2><p>للطلب أو الاستفسار، تواصل معنا مباشرة.</p></div>
+      <div class="contact-actions"><a class="primary-btn" href="https://www.instagram.com/" target="_blank" rel="noopener">تواصل عبر Instagram ↗</a><a class="secondary-btn" href="tel:0663569928">0663569928</a></div>
+    </section>
+  </main>
+
+  <footer><a class="brand footer-brand" href="./"><span class="brand-mark">N</span><span>NOVEX <b>STORE</b></span></a><span>© <span id="year"></span> Novex Store</span><span>تسوّق بثقة.</span></footer>
+
+  <dialog id="product-dialog" class="product-dialog">
+    <button class="dialog-close" id="dialog-close" aria-label="إغلاق">×</button>
+    <img id="dialog-image" alt="">
+    <div class="dialog-content"><span class="eyebrow">NOVEX PRODUCT</span><h2 id="dialog-title"></h2><p id="dialog-description"></p><strong id="dialog-price"></strong><a id="dialog-order" class="primary-btn" target="_blank" rel="noopener">اطلب هذا المنتج ↗</a></div>
+  </dialog>
+  <script src="config.js"></script>
+  <script src="store.js"></script>
+</body>
+</html>

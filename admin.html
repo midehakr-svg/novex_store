@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <title>إدارة المتجر | Novex Store</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="admin-body">
+  <header class="topbar"><a class="brand" href="index.html"><span class="brand-mark">N</span><span>NOVEX <b>STORE</b></span></a><a class="owner-link" href="index.html">العودة للمتجر ↗</a></header>
+  <main class="admin-main">
+    <section id="login-panel" class="admin-panel login-panel">
+      <span class="eyebrow">PRIVATE ACCESS</span><h1>إدارة المتجر</h1><p>الدخول مخصص لمالك المتجر. أنشئ حساب المالك في Supabase أولاً، ولا تضع كلمة المرور داخل ملفات الموقع.</p>
+      <form id="login-form">
+        <label>البريد الإلكتروني<input type="email" id="email" autocomplete="username" required placeholder="owner@example.com"></label>
+        <label>كلمة المرور<input type="password" id="password" autocomplete="current-password" required placeholder="••••••••"></label>
+        <button class="primary-btn full-width" type="submit">تسجيل الدخول</button>
+      </form><p id="login-message" class="form-message"></p>
+    </section>
+
+    <section id="dashboard" class="dashboard hidden">
+      <div class="dashboard-heading"><div><span class="eyebrow">OWNER DASHBOARD</span><h1>لوحة التحكم</h1><p>أضف المنتجات وعدّلها أو احذفها. التغييرات تحفظ في قاعدة البيانات.</p></div><button id="logout" class="secondary-btn">تسجيل الخروج</button></div>
+      <div class="admin-panel">
+        <h2 id="form-title">إضافة منتج جديد</h2>
+        <form id="product-form" class="product-form">
+          <input type="hidden" id="product-id">
+          <label>اسم المنتج<input id="product-name" maxlength="120" required placeholder="مثال: سماعات لاسلكية"></label>
+          <label>السعر بالدينار الجزائري (دج)<input id="product-price" type="number" min="0" step="1" required placeholder="2500"></label>
+          <label class="wide">وصف المنتج<textarea id="product-description" maxlength="3000" rows="4" placeholder="اكتب تفاصيل المنتج..."></textarea></label>
+          <label class="wide">صورة المنتج<input id="product-image" type="file" accept="image/jpeg,image/png,image/webp"></label>
+          <p class="wide hint">الصور المدعومة: JPG / PNG / WebP، بحد أقصى 5MB. لا ترفع صوراً لا تملك حق استخدامها.</p>
+          <div class="form-buttons wide"><button class="primary-btn" type="submit" id="save-product">حفظ المنتج</button><button class="secondary-btn hidden" type="button" id="cancel-edit">إلغاء التعديل</button></div>
+        </form><p id="form-message" class="form-message"></p>
+      </div>
+      <div class="admin-panel"><div class="section-head compact"><div><h2>المنتجات المنشورة</h2><p>هذه القائمة لا تظهر إلا بعد تسجيل الدخول.</p></div></div><div id="admin-products" class="admin-products"></div></div>
+    </section>
+  </main>
+  <script src="config.js"></script><script src="admin.js"></script>
+</body>
+</html>
