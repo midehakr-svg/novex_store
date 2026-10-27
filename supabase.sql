@@ -1,6 +1,6 @@
 -- NOVEX STORE: run this entire file in Supabase SQL Editor.
 -- Before running: create the owner's account in Supabase Authentication > Users.
--- Replace d912cad9-5904-40f1-9c39-7ad166bb54c8 below with that user's exact UUID.
+-- Owner UUID is configured for this project.
 -- Never put a service_role key in config.js or any browser file.
 
 create extension if not exists pgcrypto;
