@@ -1,6 +1,6 @@
 -- NOVEX STORE: run this entire file in Supabase SQL Editor.
 -- Before running: create the owner's account in Supabase Authentication > Users.
--- Replace 7e6e5b02-31cb-4f4d-b19c-66ebf88eaa68 below with that user's exact UUID.
+-- Replace d912cad9-5904-40f1-9c39-7ad166bb54c8 below with that user's exact UUID.
 -- Never put a service_role key in config.js or any browser file.
 
 create extension if not exists pgcrypto;
@@ -28,26 +28,26 @@ drop policy if exists "Owner can view all products" on public.products;
 create policy "Owner can view all products"
 on public.products for select
 to authenticated
-using (auth.uid() = '7e6e5b02-31cb-4f4d-b19c-66ebf88eaa68'::uuid);
+using (auth.uid() = 'd912cad9-5904-40f1-9c39-7ad166bb54c8'::uuid);
 
 drop policy if exists "Owner can insert products" on public.products;
 create policy "Owner can insert products"
 on public.products for insert
 to authenticated
-with check (auth.uid() = '7e6e5b02-31cb-4f4d-b19c-66ebf88eaa68'::uuid);
+with check (auth.uid() = 'd912cad9-5904-40f1-9c39-7ad166bb54c8'::uuid);
 
 drop policy if exists "Owner can update products" on public.products;
 create policy "Owner can update products"
 on public.products for update
 to authenticated
-using (auth.uid() = '7e6e5b02-31cb-4f4d-b19c-66ebf88eaa68'::uuid)
-with check (auth.uid() = '7e6e5b02-31cb-4f4d-b19c-66ebf88eaa68'::uuid);
+using (auth.uid() = 'd912cad9-5904-40f1-9c39-7ad166bb54c8'::uuid)
+with check (auth.uid() = 'd912cad9-5904-40f1-9c39-7ad166bb54c8'::uuid);
 
 drop policy if exists "Owner can delete products" on public.products;
 create policy "Owner can delete products"
 on public.products for delete
 to authenticated
-using (auth.uid() = '7e6e5b02-31cb-4f4d-b19c-66ebf88eaa68'::uuid);
+using (auth.uid() = 'd912cad9-5904-40f1-9c39-7ad166bb54c8'::uuid);
 
 -- Storage bucket for product photos. Public read is needed for visitors.
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
@@ -65,17 +65,17 @@ drop policy if exists "Owner can upload product photos" on storage.objects;
 create policy "Owner can upload product photos"
 on storage.objects for insert
 to authenticated
-with check (bucket_id = 'products' and auth.uid() = '7e6e5b02-31cb-4f4d-b19c-66ebf88eaa68'::uuid);
+with check (bucket_id = 'products' and auth.uid() = 'd912cad9-5904-40f1-9c39-7ad166bb54c8'::uuid);
 
 drop policy if exists "Owner can update product photos" on storage.objects;
 create policy "Owner can update product photos"
 on storage.objects for update
 to authenticated
-using (bucket_id = 'products' and auth.uid() = '7e6e5b02-31cb-4f4d-b19c-66ebf88eaa68'::uuid)
-with check (bucket_id = 'products' and auth.uid() = '7e6e5b02-31cb-4f4d-b19c-66ebf88eaa68'::uuid);
+using (bucket_id = 'products' and auth.uid() = 'd912cad9-5904-40f1-9c39-7ad166bb54c8'::uuid)
+with check (bucket_id = 'products' and auth.uid() = 'd912cad9-5904-40f1-9c39-7ad166bb54c8'::uuid);
 
 drop policy if exists "Owner can delete product photos" on storage.objects;
 create policy "Owner can delete product photos"
 on storage.objects for delete
 to authenticated
-using (bucket_id = 'products' and auth.uid() = '7e6e5b02-31cb-4f4d-b19c-66ebf88eaa68'::uuid);
+using (bucket_id = 'products' and auth.uid() = 'd912cad9-5904-40f1-9c39-7ad166bb54c8'::uuid);
