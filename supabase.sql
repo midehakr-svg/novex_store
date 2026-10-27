@@ -11,11 +11,13 @@ create table if not exists public.products (
   description text not null default '' check (char_length(description) <= 3000),
   price numeric(12,2) not null check (price >= 0),
   image_url text,
+  image_urls jsonb not null default '[]'::jsonb,
   published boolean not null default true,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
 
+alter table public.products add column if not exists image_urls jsonb not null default '[]'::jsonb;
 alter table public.products enable row level security;
 
 drop policy if exists "Anyone can view published products" on public.products;
@@ -79,3 +81,11 @@ create policy "Owner can delete product photos"
 on storage.objects for delete
 to authenticated
 using (bucket_id = 'products' and auth.uid() = 'd912cad9-5904-40f1-9c39-7ad166bb54c8'::uuid);
+
+-- Owner-code workflow: writes go through the server-side Edge Function only.
+drop policy if exists "Owner can insert products" on public.products;
+drop policy if exists "Owner can update products" on public.products;
+drop policy if exists "Owner can delete products" on public.products;
+drop policy if exists "Owner can upload product photos" on storage.objects;
+drop policy if exists "Owner can update product photos" on storage.objects;
+drop policy if exists "Owner can delete product photos" on storage.objects;
